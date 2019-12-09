@@ -18,7 +18,15 @@ public class TestFib {
                 {0, 0},
                 {1, 1},
                 {10, 55},
-                {9, 34}
+                {50, 12586269025L}
+        };
+    }
+
+    @DataProvider
+    public static Object[][] negative() {
+        return new Object[][]{
+                {-1},
+                {51}
         };
     }
 
@@ -34,8 +42,8 @@ public class TestFib {
         fibCalc = new FibCalc();
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void expectExceptionWhenNegative() {
-        fibCalc.calc(-10);
+    @Test(expectedExceptions = IllegalArgumentException.class, dataProvider = "negative")
+    public void expectExceptionWhenNegative(long n) {
+        fibCalc.calc(n);
     }
 }
