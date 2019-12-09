@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,19 +17,21 @@ public class TestFib {
                 {0, 0},
                 {1, 1},
                 {10, 55},
-                {50, 12586269025L}
+                {50, 12586269025L},
+                {-3, 2},
+                {-10, -55},
         };
     }
 
-    @DataProvider
-    public static Object[][] negative() {
-        return new Object[][]{
-                {-1},
-                {51}
-        };
-    }
+//    @DataProvider
+//    public static Object[][] negative() {
+//        return new Object[][]{
+//                {-1},
+//                {51}
+//        };
+//    }
 
-    @Test(dataProvider = "data")
+    @Test(dataProvider = "data", timeOut = 40)
     public void testFib(long n, long exp) {
         long calc = fibCalc.calc(n);
         log.info("Получено число {}", calc);
@@ -42,8 +43,8 @@ public class TestFib {
         fibCalc = new FibCalc();
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class, dataProvider = "negative")
-    public void expectExceptionWhenNegative(long n) {
-        fibCalc.calc(n);
-    }
+//    @Test(expectedExceptions = IllegalArgumentException.class, dataProvider = "negative")
+//    public void expectExceptionWhenNegative(long n) {
+//        fibCalc.calc(n);
+//    }
 }
