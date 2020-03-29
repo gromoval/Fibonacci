@@ -13,6 +13,7 @@ public class TestFibMyTDD {
                 {10, 55},
                 {50, 12586269025L},
                 {-50, -12586269025L},
+                {-49, 7778742049L},
                 {-3, 2},
                 {-10, -55},
         };
@@ -22,10 +23,10 @@ public class TestFibMyTDD {
     public void testFibMyTDD(int n, long expect) {
         FibCalcMyTDD fibCalcMyTDD = new FibCalcMyTDD();
         long calc_matrix = fibCalcMyTDD.matrix(n);
-//        long calc_bine = fibCalcMyTDD.bine(n);
+        long calc_bine = fibCalcMyTDD.bine(n);
         Assert.assertEquals(calc_matrix, expect, "По формуле возведения матрицы в степень результаты не совпадают");
         System.out.println(n+" элемент последовательности Фибоначчи по методу возведения матрицы в степень: "+calc_matrix);
-//        Assert.assertEquals(calc_bine, expect, "По формуле Бине результаты не совпадают");
-//        System.out.println(n+" элемент последовательности Фибоначчи по формуле Бине: "+calc_bine);
+        Assert.assertEquals(calc_bine, expect, "По формуле Бине результаты не совпадают");
+        System.out.println(n+" элемент последовательности Фибоначчи по формуле Бине: "+calc_bine);
     }
 }

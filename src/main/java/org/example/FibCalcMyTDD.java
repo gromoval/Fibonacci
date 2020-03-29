@@ -31,12 +31,16 @@ public class FibCalcMyTDD {
         } else return F[0][0];
     }
 
-// можем считать только для положительных, поэтому не будем дальше использовать
     public long bine(int n) {
-        if (n < 0 || n > 50) throw new IllegalArgumentException("Мы не считаем значения меньше 0 или больше 50!");
+        int initn =n;
+        n=Math.abs(n);
+        if (n > 50) throw new IllegalArgumentException("Мы не считаем значения меньше 0 или больше 50!");
         double value = Math.pow(5, 0.5);
         double one = (1 + value) / 2;
         double two = (1 - value) / 2;
-        return Math.round((Math.pow(one, n) - Math.pow(two, n)) / value);
+        long result = Math.round((Math.pow(one, n) - Math.pow(two, n)) / value);
+        if (initn<0) {
+            return (long) (Math.pow(-1,initn+1)*result);
+        } else return result;
     }
 }
